@@ -1,0 +1,19 @@
+{
+  "name": "expressdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon --exec ts-node source/p1-index.ts"
+  },
+  "author": "Ruthanna",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.249.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1"
+  }
+}
