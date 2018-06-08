@@ -3,27 +3,118 @@ import { reimTypes } from "../actions/reims/reim.types";
 
 
 const initialState = {
-  currentUser: {
-    email: '', 
-    firstName: '',
-    lastName: '', 
-    password: 'pass',
-    role: 'employee',
-    username: ''
+  currentReim: {
+    amount: 0,
+    description:'', 
+    timeOfExpense:  0, 
+    title: '',
+    type: '', 
+
+  },
+  newReims: [],
+  wholeReim: {
+    approver: 'pending',
+    items: {}, // how do I change this to newReims?
+    receipts: [], 
+    status: 'pending',
+    timeSubmitted: 0,
+    username: '' // how do I make this the username of currentUser from the state? 
   }
 }
 
 export const reimReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case reimTypes.INCREMENT:
-      return {
-        currentUser: action.payload.currentUser
-      };
-      case reimTypes.UPDATE_MOVIES:
+    case reimTypes.UPDATE_AMOUNT:
       return {
         ...state,
-        movies: action.payload.movies,
-        year: 2018, 
+        currentReim: {
+          ...state.currentReim,
+          amount: action.payload.amount,
+        }
+        
+      };
+    case reimTypes.UPDATE_DESC:
+      return {
+        ...state,
+        currentReim: {
+          ...state.currentReim,
+          description: action.payload.description
+        }
+        
+      };
+    case reimTypes.UPDATE_TIME:
+      return {
+        ...state,
+        currentReim: {
+          ...state.currentReim,
+          timeOfExpense: action.payload.timeOfExpense
+        }
+      };
+    case reimTypes.UPDATE_TITLE:
+      return {
+        ...state,
+        currentReim: {
+          ...state.currentReim,
+          title: action.payload.title
+        }
+        
+      };
+      case reimTypes.UPDATE_TYPE:
+      return {
+        ...state,
+        currentReim: {
+          ...state.currentReim,
+          type: action.payload.type
+        }
+        
+      };
+      case reimTypes.UPDATE_APPROVER:
+      return {
+        ...state,
+        wholeReim: {
+          ...state.wholeReim,
+          approver: action.payload.approver
+        }
+        
+      };
+      case reimTypes.UPDATE_STATUS:
+      return {
+        ...state,
+        wholeReim: {
+          ...state.wholeReim,
+          status: action.payload.status
+        }
+        
+      };
+    case reimTypes.UPDATE_SUBMIT_TIME:
+      return {
+        ...state,
+        wholeReim: {
+          ...state.wholeReim,
+          timeSubmitted: action.payload.timeSubmitted
+        }
+      };
+    case reimTypes.ADD_REIM:
+      return {
+        ...state,
+        newReims: action.payload.newReims
+      };
+    case reimTypes.EST_REIM_ITEMS:
+      return {
+        ...state,
+        wholeReim: {
+          ...state.wholeReim,
+          items: action.payload.items
+        }
+      };
+    case reimTypes.SUBMIT_REIM:
+      return {
+        ...state,
+        wholeReim: action.payload.wholeReim
+      };
+    case reimTypes.UPDATE_REIM:
+      return {
+        wholeReim: action.payload.wholeReim
       };
   }
 
