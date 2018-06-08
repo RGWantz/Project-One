@@ -31,11 +31,28 @@
 *   LOGIN PAGE
 ************************************/
 
-#login-box {
+.login-box {
   background-color:khaki;
   border: 3px solid darkorange; 
 }
 
+.login-para {
+  text-align: center;
+}
+
 .photo-area{
+  text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  margin-left: 1em;
+}
+
+.rev-logo {
+  max-width: 100%;
+  max-height: 75%;
+  margin-left: 0em;
+  
+}
+
+.r-margin{
+  margin-left: 3em;
 }

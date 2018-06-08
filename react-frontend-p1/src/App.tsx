@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { CreateUserComponent } from './components/createUser.component';
+// import { NavComponent } from './components/nav.component';
 import { SigninComponent } from './components/signin.component';
 import { UserSubmitComponent } from './components/usersubmit.component';
 import './include/bootstrap';
@@ -12,12 +14,18 @@ class App extends React.Component {
     return (
       <HashRouter> 
         <div>
-        {/* <NavComponent />  */}
+        
           <Switch>
-            <Route path="/user/submit" component={UserSubmitComponent} />
-            {/* <Route path="/second" component={SecondComponent} />
-            <Route path="/clicker" component={ClickerComponent} />
+            <Route path="/signin" component={SigninComponent} />
+            <Route path="/users" component={CreateUserComponent} />
+            <div>
+              <Switch>
+                {/* <NavComponent /> */}
+                <Route path="/user/submit" component={UserSubmitComponent} />
+                {/* <Route path="/clicker" component={ClickerComponent} />
             <Route path="/tic-tac-toe" component={TicTacComponent}/> */}
+              </Switch>
+            </div>
             <Route component={SigninComponent} />
           </Switch>
         </div>
