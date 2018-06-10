@@ -1,9 +1,9 @@
-// import { combineReducers } from "redux";
+import { combineReducers } from "redux";
 import { Reimbursement } from "../models/reimbursement";
 import { User } from './../models/user';
-// import { adminReducer } from "./admin.reducer";
-// import { reimReducer } from "./reim.reducer";
-// import { userReducer } from './user.reducer';
+import { adminReducer } from "./admin.reducer";
+import { reimReducer } from "./reim.reducer";
+import { userReducer } from './user.reducer';
 
 
 // import { signInReducer } from "./sign-in.reducer";
@@ -22,12 +22,12 @@ export interface IUser {
 
 export interface IReimState {
   currentReim: Reimbursement,
-  newReims: Reimbursement[],
+  newReims: any[],
   wholeReim: any 
 }
 
 export interface IAdminState {
-  dispReims: Reimbursement[], 
+  dispReims:any[], 
   searchStatus: string,
   searchUser: string
 }
@@ -40,12 +40,12 @@ export interface IAdminState {
 
 // this is the one with the problem 
 
-// export const state = combineReducers<IState>({
-//   admin: adminReducer,
-//   reim: reimReducer,
-//   user: userReducer
-//   // signIn: signInReducer
-// });
+export const state = combineReducers<IState>({
+  admin: adminReducer,
+  reim: reimReducer,
+  user: userReducer
+  // signIn: signInReducer
+} as any);
 
 
  

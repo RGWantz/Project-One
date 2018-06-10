@@ -3,7 +3,7 @@ import { changeSearchUser, getReimsByStatus, getReimsByUser} from '../actions/ad
 // import { findUser } from '../actions/users/user.actions';
 // possibly
 import { IState } from '../reducers';
-import { UserViewComponent } from './userView.component';
+import { AdminViewComponent } from './adminView.component';
 
 
 
@@ -16,7 +16,7 @@ export const mapDispatchToProps = {
     getReimsByUser
 };
 
-export const SigninContainer = connect(
+export const AdminViewContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserViewComponent);
+)(AdminViewComponent);

@@ -50,7 +50,7 @@ export const updateUserInfo = (currentUser: User) => (dispatch: any) =>  {
     method: 'PUT'
   })
     .then(resp => {
-      // console.log(resp.status)
+      console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -65,14 +65,14 @@ export const updateUserInfo = (currentUser: User) => (dispatch: any) =>  {
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
     });
 }
 
 export const findUser = (username: string) => (dispatch: any) =>  {
   fetch('http://localhost:3001/users/' + username, { credentials: 'include' })
     .then(resp => {
-      // console.log(resp.status)
+      console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -87,7 +87,7 @@ export const findUser = (username: string) => (dispatch: any) =>  {
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
     });
 }
 

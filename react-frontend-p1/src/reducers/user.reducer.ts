@@ -6,8 +6,8 @@ import { userTypes } from "../actions/users/user.types";
 const initialState = {
   currentUser: {
     email: '', 
-    firstName: '',
-    lastName: '', 
+    firstName: 'Jim',
+    lastName: 'Kirk', 
     password: 'pass',
     role: 'employee',
     username: ''

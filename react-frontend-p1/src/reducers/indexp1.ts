@@ -1,7 +1,10 @@
-
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { Reimbursement } from "../models/reimbursement";
 import { User } from './../models/user';
+import { adminReducer } from './admin.reducer';
+import { reimReducer } from './reim.reducer';
+import { userReducer } from './user.reducer';
+
 
 
 export interface IState2 {
@@ -11,14 +14,14 @@ export interface IState2 {
 }
 
 export interface IAdminState2 {
-    dispReims: Reimbursement[],
+    dispReims: any[],
     searchStatus: string,
     searchUser: string
 }
 
 export interface IReimState2 {
     currentReim: Reimbursement,
-    newReims: Reimbursement[],
+    newReims: any [],
     wholeReim: any
 }
 
@@ -26,6 +29,8 @@ export interface IUserState2 {
     currentUser: User
 }
 
-// export const state = combineReducers<IState2> ({
-
-// });
+export const state = combineReducers<IState2> ({
+    admin: adminReducer,
+    reim: reimReducer,
+    user: userReducer
+}as any);

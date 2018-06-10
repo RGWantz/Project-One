@@ -1,8 +1,33 @@
 import * as React from 'react'; 
 import RevLogo from './assets/rev-logo-3.png';
+import { User } from '../models/user';
+import { IUser } from '../reducers';
 
+interface IProp extends IUser {
+    findUser: (currentUser:User) => void;
+    updatePassword: (password:string) => void;
+    updateUsername: (username:string) => void;
+}
 
-export class SigninComponent extends React.Component<any,any> {
+export class SigninComponent extends React.Component<IProp,any> {
+    constructor(props: any) {
+        super(props);
+    }
+
+    public updateUsername = (e:any) => { 
+        const username = e.target.value;
+        this.props.updateUsername(username); 
+    }
+
+    public updatePassword = (e:any) => {
+        const password = e.target.value;
+        this.props.updatePassword(password); 
+    }
+    
+    public submit = (e:any) => {
+        e.preventDefault();
+        this.props.findUser(this.props.currentUser); // need to make sure that it sends the username part of it like I want it to
+    }
 
     public render() {
         return(
@@ -16,14 +41,23 @@ export class SigninComponent extends React.Component<any,any> {
                         Log in to your Account 
                         </h4>
                         
-                        <form>
+                        <form onSubmit={this.submit}>
                             <div className="form-group">
                                 <label >Username</label>
-                                <input type="text" className="form-control" id="InputUser1" placeholder="Enter username"/>
+                                <input value={this.props.currentUser.username} 
+                                    onChange= {this.updateUsername} // determine if bind needed 
+                                    type="text" 
+                                    className="form-control" 
+                                    id="InputUser1" placeholder="Enter username"/>
                             </div>
                             <div className="form-group">
                                     <label >Password</label>
-                                    <input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
+                                    <input value={this.props.currentUser.password} 
+                                    onChange= {this.updatePassword}
+                                    type="password" 
+                                    className="form-control" 
+                                    id="InputPassword1" 
+                                    placeholder="Enter Password"/>
                             </div>
                                     <div className="form-group form-check">
                                         <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
