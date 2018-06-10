@@ -12,7 +12,7 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
                   {/* <a className="nav-link active" href="#">Active</a> */}
               </li>
               <li className="nav-item">
-                  <a className="nav-link" href="#">Link</a>
+                <Link to="/user/update" className="unset-anchor nav-link">Update User Info</Link>
               </li>
               <li className="nav-item">
                   <a className="nav-link" href="#">Link</a>

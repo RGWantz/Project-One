@@ -11,7 +11,7 @@ export class UserSubmitComponent extends React.Component<any,any> {
                 <br/> 
                 <h2>Submit a New Reimbursement for Approval</h2> 
                 <button className="btn btn-secondary" type=""> Add New Reimbursement </button> 
-            
+                <br/> 
             {/* // onClick show another row of table... except it's a form table */}
             <table className="table">
                 <thead>

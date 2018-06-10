@@ -53,6 +53,10 @@
   
 }
 
-.r-margin{
+.r-margin {
   margin-left: 3em;
+}
+
+.wide-margin {
+  margin-left: 5em;
 }

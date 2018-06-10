@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { AdminViewComponent } from './components/adminView.component';
 import { CreateUserComponent } from './components/createUser.component';
 // import { NavComponent } from './components/nav.component';
 import { SigninComponent } from './components/signin.component';
+import { UserInfoComponent } from './components/userInfo.component';
 import { UserSubmitComponent } from './components/usersubmit.component';
+import { UserViewComponent } from './components/userView.component';
+
 import './include/bootstrap';
-// import logo from './logo.svg';
+
 
 
 class App extends React.Component {
@@ -22,24 +26,15 @@ class App extends React.Component {
               <Switch>
                 {/* <NavComponent /> */}
                 <Route path="/user/submit" component={UserSubmitComponent} />
-                {/* <Route path="/clicker" component={ClickerComponent} />
-            <Route path="/tic-tac-toe" component={TicTacComponent}/> */}
+                <Route path="/user/update" component={UserInfoComponent}/>
+                <Route path="/user" component={UserViewComponent} />
+                <Route path="/admin" component={AdminViewComponent}/>
               </Switch>
             </div>
             <Route component={SigninComponent} />
           </Switch>
         </div>
       </HashRouter>
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <h1 className="App-title">Welcome to React</h1>
-      //   </header>
-      //   <p className="App-intro">
-      //     To get started, edit <code>src/App.tsx</code> and save to reload.
-      //   </p>
-      //   <SigninComponent/>
-      // </div>
     );
   }
 }

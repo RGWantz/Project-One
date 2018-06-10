@@ -114,7 +114,7 @@ export const updateDescription = (description: string) => {
   }
 }
 
-export const updateamount = (amount:number) => {
+export const updateAmount = (amount:number) => {
   return {
     payload: {
       amount
