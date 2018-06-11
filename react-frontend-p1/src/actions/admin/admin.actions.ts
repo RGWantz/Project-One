@@ -2,7 +2,7 @@ import { adminTypes } from './admin.types';
 
 
 export const getReimsByUser = (username: string) => (dispatch: any) =>  {
-  fetch('http://localhost:3001/reimbursements/users/' + username, { credentials: 'include' })
+  fetch('http://localhost:3001/reimbursements/user/' + username, { credentials: 'include' })
     .then(resp => {
       // console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
@@ -45,20 +45,23 @@ export const getReimsByStatus = (status: string) => (dispatch: any) =>  {
     });
 }
 
-export const changeSearchUser = (user:string) => {
-  return {
-    payload: {
-      user
+export const changeSearchUser = (user:string) => (dispatch:any) =>{
+  // return {
+    dispatch({
+      payload: {
+        user
     },
-    type: adminTypes.CHANGE_USER,
-  }
+    type: adminTypes.CHANGE_USER
+  })
+    
+  // }
 }
 
-export const changeSearchStatus = (status: string) => {
-  return {
+export const changeSearchStatus = (status: string) => (dispatch:any) => {
+  dispatch ({
     payload: {
       status
     },
     type: adminTypes.CHANGE_STATUS,
-  }
+  })
 }

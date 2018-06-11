@@ -13,13 +13,13 @@ export const adminReducer = (state = initialState, action: any) => {
     case adminTypes.CHANGE_STATUS:
       return {
         ...state,
-        searchStatus: action.payload.searchStatus
+        searchStatus: action.payload.status
         
       };
     case adminTypes.CHANGE_USER:
       return {
         ...state,
-        searchUser: action.paylod.searchUser
+        searchUser: action.payload.user
         
       };
     case adminTypes.GETREIMS_BYSTATUS:

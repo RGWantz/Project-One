@@ -39,7 +39,7 @@ export const userReducer = (state = initialState, action: any) => {
         ...state,
         currentUser: {
           ...state.currentUser,
-          firstName: action.payload.firstName
+          firstName: action.payload.firstname
         }
       };
     case userTypes.UPDATE_LNAME:
@@ -47,7 +47,7 @@ export const userReducer = (state = initialState, action: any) => {
         ...state,
         currentUser: {
           ...state.currentUser,
-          lastName: action.payload.lastName
+          lastName: action.payload.lastname
         }
         
       };
@@ -71,11 +71,19 @@ export const userReducer = (state = initialState, action: any) => {
       };
     case userTypes.ADD_USER:
       return {
-        currentUser: action.payload.currentUser
+        ...state,
+        currentUser: {
+          email: '', 
+          firstName: '',
+          lastName: '', 
+          password: 'pass',
+          role: 'employee',
+          username: ''
+        }
       };
     case userTypes.UPDATE_USERINFO:
       return {
-        currentUser: action.payload.currentUser
+        ...state
       };
     case userTypes.FIND_USER:
       return {

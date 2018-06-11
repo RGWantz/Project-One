@@ -22,7 +22,7 @@ export interface IUser {
 
 export interface IReimState {
   currentReim: Reimbursement,
-  newReims: any[],
+  newReims: Reimbursement[],
   wholeReim: any 
 }
 

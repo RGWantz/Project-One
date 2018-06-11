@@ -23,14 +23,7 @@ export const addUser = (currentUser: User) => (dispatch: any) =>  {
     .then(data => {
       dispatch( {
         payload: {
-          currentUser: {
-            email: '', 
-            firstName: '',
-            lastName: '', 
-            password: 'pass',
-            role: 'employee',
-            username: ''
-          }
+          data
         },
         type: userTypes.ADD_USER,
       })

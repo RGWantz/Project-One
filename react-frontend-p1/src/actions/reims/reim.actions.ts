@@ -2,10 +2,6 @@ import { Reimbursement } from '../../models/reimbursement';
 import { reimTypes } from './reim.types';
 
 
-/*TODO 
-  verify url below
-  decide how to send errors, status 
-*/
 export const submitReim = (wholeReim: any) => (dispatch: any) =>  {
   fetch('http://localhost:3001/reimbursements', { 
     body: JSON.stringify(wholeReim), 
@@ -25,14 +21,7 @@ export const submitReim = (wholeReim: any) => (dispatch: any) =>  {
     .then(data => {
       dispatch( {
         payload: {
-          wholeReim: {
-            approver: 'pending',
-            items: {}, 
-            receipts: [], 
-            status: 'pending',
-            timeSubmitted: 0,
-            username: ''  
-          }
+          data
         },
         type: reimTypes.SUBMIT_REIM,
       })
@@ -52,7 +41,7 @@ export const updateReim = (wholeReim:any) => (dispatch: any) =>  {
     method: 'PUT'
   })
     .then(resp => {
-      // console.log(resp.status)
+      console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -61,35 +50,19 @@ export const updateReim = (wholeReim:any) => (dispatch: any) =>  {
     .then(data => {
       dispatch( {
         payload: {
-          wholeReim: {
-            approver: 'pending',
-            items: {}, 
-            receipts: [], 
-            status: 'pending',
-            timeSubmitted: 0,
-            username: ''  
-          }
+          data
         },
         type: reimTypes.UPDATE_REIM,
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
     });
 }
 export const addReim = (newReims: Reimbursement[], currentReim: Reimbursement) => {
   return {
     payload: {
-      currentReim: {
-        amount: 0,
-        description:'', 
-        timeOfExpense:  0, 
-        title: '',
-        type: '', 
-    
-      },
       newReims: newReims.push(currentReim),
-      // The order won't be a problem, will it? 
     },
     type: reimTypes.ADD_REIM,
   }
@@ -98,8 +71,7 @@ export const addReim = (newReims: Reimbursement[], currentReim: Reimbursement) =
 export const estReimItems = (newReims: Reimbursement[], items:any) => {
   return {
     payload: {
-      items: newReims,
-      newReims: [],
+      items: newReims
     },
     type: reimTypes.EST_REIM_ITEMS,
   }

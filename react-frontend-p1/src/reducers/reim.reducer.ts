@@ -14,7 +14,7 @@ const initialState = {
   newReims: [],
   wholeReim: {
     approver: 'pending',
-    items: {}, // how do I change this to newReims?
+    items: {}, 
     receipts: [], 
     status: 'pending',
     timeSubmitted: 0,
@@ -47,7 +47,7 @@ export const reimReducer = (state = initialState, action: any) => {
         ...state,
         currentReim: {
           ...state.currentReim,
-          timeOfExpense: action.payload.timeOfExpense
+          timeOfExpense: action.payload.time
         }
       };
     case reimTypes.UPDATE_TITLE:
@@ -91,17 +91,26 @@ export const reimReducer = (state = initialState, action: any) => {
         ...state,
         wholeReim: {
           ...state.wholeReim,
-          timeSubmitted: action.payload.timeSubmitted
+          timeSubmitted: action.payload.subtime
         }
       };
     case reimTypes.ADD_REIM:
       return {
         ...state,
+        currentReim: {
+          amount: 0,
+          description:'', 
+          timeOfExpense:  0, 
+          title: '',
+          type: '', 
+      
+        },
         newReims: action.payload.newReims
       };
     case reimTypes.EST_REIM_ITEMS:
       return {
         ...state,
+        newReims: [],
         wholeReim: {
           ...state.wholeReim,
           items: action.payload.items
@@ -110,11 +119,26 @@ export const reimReducer = (state = initialState, action: any) => {
     case reimTypes.SUBMIT_REIM:
       return {
         ...state,
-        wholeReim: action.payload.wholeReim
+        wholeReim: {
+          approver: 'pending',
+          items: {}, 
+          receipts: [], 
+          status: 'pending',
+          timeSubmitted: 0,
+          username: ''  
+        }
       };
     case reimTypes.UPDATE_REIM:
       return {
-        wholeReim: action.payload.wholeReim
+        ...state,
+        wholeReim: {
+          approver: 'pending',
+          items: {}, 
+          receipts: [], 
+          status: 'pending',
+          timeSubmitted: 0,
+          username: ''  
+        }
       };
   }
 
