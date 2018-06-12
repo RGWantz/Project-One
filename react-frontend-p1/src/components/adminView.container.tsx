@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { changeSearchStatus, changeSearchUser, getReimsByStatus, getReimsByUser} from '../actions/admin/admin.actions';
-import { updateApprover, updateReim, updateStatus} from '../actions/reims/reim.actions';
+import { changeSearchStatus, changeSearchUser, getReimsByStatus, getReimsByUser, getSingleReim} from '../actions/admin/admin.actions';
+import { updateApprover, updateReim, updateReimUsername, updateStatus, updateSubmitTime} from '../actions/reims/reim.actions';
 // import { findUser } from '../actions/users/user.actions';
 // possibly
 import { IState } from '../reducers';
@@ -9,16 +9,19 @@ import { AdminViewComponent } from './adminView.component';
 
 
 
-const mapStateToProps = (state: IState) => (state);// can I do this? 
+const mapStateToProps = (state: IState) => (state.admin);// can I do this? 
     
 export const mapDispatchToProps = {
     changeSearchStatus,  
     changeSearchUser,
     getReimsByStatus,
     getReimsByUser,
+    getSingleReim,
     updateApprover,
     updateReim,
-    updateStatus
+    updateReimUsername,
+    updateStatus,
+    updateSubmitTime
 };
 
 export const AdminViewContainer = connect(

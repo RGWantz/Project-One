@@ -1,14 +1,17 @@
 import * as React from 'react'; 
-import { IUser, IAdminState } from '../reducers';
+import { IUser, IAdminState, IReimState } from '../reducers';
 
-interface IProp extends IAdminState, IUser {
+interface IProp extends IAdminState, IReimState, IUser {
+        getSingleReim: (username:string, time:number) => any;
         getReimsByUser: (username:string) => any[]; 
         getReimsByStatus: (status:string) => any[];
         changeSearchUser: (username:string) => void; 
         changeSearchStatus: (status:string) => void; 
         updateApprover: (approver:string) => void;
-        updateReim: (approver:string) => void;
-        updateStatus: (approver:string) => void;
+        updateReim: (wholeReim:any) => void;
+        updateReimUsername: (username:string) => void;
+        updateStatus: (status:string) => void;
+        updateSubmitTime: (time:number) => void;
     }
     
 
@@ -17,31 +20,58 @@ export class AdminViewComponent extends React.Component<IProp,any> {
             super(props);
         }
 
+        public updateReim = (e:any) => {
+            this.props.updateApprover(this.props.currentUser.username); // watch out for async
+            this.props.updateReim(this.props.wholeReim); 
+        }
+
+        public updateSubmitTime = (e:any) => {
+            const time = parseInt(e.target.value, 10);
+            this.props.updateSubmitTime(time); 
+        }
+
+        public updateStatus = (e:any) => {
+            const status = e.target.value;
+            this.props.updateStatus(status); 
+        }
+
+        public updateReimUsername = (e:any) => {
+            const username = e.target.value;
+            this.props.updateReimUsername(username); 
+        }
+
+        public updateApprover = (e:any) => {
+            const username = e.target.value;
+            this.props.updateApprover(username); 
+        }
+
         public changeSearchUser = (e:any) => {
             const username = e.target.value;
             this.props.changeSearchUser(username); 
         }
 
         public changeSearchStatus = (e:any) => {
-            console.log(`in status function, status is ${e.target.value}`)
             const status = e.target.value;
             this.props.changeSearchStatus(status); 
         }
 
         public getReimsByStatus = (e:any) => {
-            // e.preventDefault();
             this.props.getReimsByStatus(this.props.searchStatus);
         }
 
         public getReimsByUser = (e:any) => {
-            // e.preventDefault();
             this.props.getReimsByUser(this.props.searchUser);
+        }
+
+        public getSingleReim = (e:any) => {
+            console.log(this.props.getSingleReim(this.props.wholeReim.username, this.props.wholeReim.timeSubmitted)); 
         }
     
     
         public componentDidMount(){ 
             this.getReimsByStatus('pending');
         };
+
     public render() {
         return(
             
@@ -131,10 +161,34 @@ export class AdminViewComponent extends React.Component<IProp,any> {
                     
                 </tbody>
             </table>
-            <form >
+            <br/> 
                 <h4>Approve or Deny a Reimbursement Request</h4>
-                h
-            </form>
+                <div className="row">
+                    <form onSubmit={this.getSingleReim}>
+                          
+                        {/*and then also call this.updateReim ... but watch out for async because wholeReim first needs to be updated */}
+                        
+                        <div className="col">
+                        <label className="disappearing">Reimbursement Username</label>
+                        <input value={this.props.wholeReim.username}
+                            onChange={this.updateReimUsername}
+                            type="text" className="form-control" />
+                        </div>
+                        <label className="disappearing">Reimbursement Timestamp</label>
+                        <input value={this.props.wholeReim.timeSubmitted}
+                            onChange={this.updateSubmitTime}
+                            type="number" 
+                            className="form-control" />
+                        <label className="disappearing">Updated Status</label>
+                        <select value={this.props.wholeReim.status}
+                            onChange={this.updateStatus}
+                            className="form-control" id="FormControlSelect1">
+                            <option value="approved">approved</option>
+                            <option value="denied">denied</option>
+                        </select>
+                        <button type="submit" className="btn btn-secondary">Update Reimbursement</button>
+                    </form>
+                </div>
             </div>
         )
     }

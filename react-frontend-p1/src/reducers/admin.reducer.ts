@@ -22,6 +22,11 @@ export const adminReducer = (state = initialState, action: any) => {
         searchUser: action.payload.user
         
       };
+    case adminTypes.GET_SINGLE_REIM:
+      return {
+        ...state,
+        wholeReim: action.payload.wholeReim
+      }
     case adminTypes.GETREIMS_BYSTATUS:
       return {
         ...state,

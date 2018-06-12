@@ -1,5 +1,26 @@
 import { adminTypes } from './admin.types';
 
+export const getSingleReim = (username: string, time: number) => (dispatch: any) =>  {
+  fetch(`http://localhost:3001/reimbursements/user/${username}/time/${time}`, { credentials: 'include' })
+    .then(resp => {
+      // console.log(resp.status)
+      if (resp.status === 401 || resp.status === 403) {
+        return;
+      }
+      return resp.json();
+    })
+    .then((wholeReim) => {
+      dispatch( {
+        payload: {
+          wholeReim
+        },
+        type: adminTypes.GET_SINGLE_REIM,
+      })
+    })
+    .catch(err => {
+      // console.log(err);
+    });
+}
 
 export const getReimsByUser = (username: string) => (dispatch: any) =>  {
   fetch('http://localhost:3001/reimbursements/user/' + username, { credentials: 'include' })

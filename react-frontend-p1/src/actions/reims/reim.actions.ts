@@ -140,6 +140,15 @@ export const updateStatus = (status: string) => {
   }
 }
 
+export const updateReimUsername = (username: string) => {
+  return {
+    payload: {
+      username
+    },
+    type: reimTypes.UPDATE_REIM_USERNAME,
+  }
+}
+
 export const updateSubmitTime = (subtime:number) => {
   return {
     payload: {

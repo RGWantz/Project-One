@@ -9,6 +9,10 @@ export function saveReim(reim) {
     return reimDao.saveReim(reim); 
 }
 
+export function findSingleReim(uName,time) {
+    return reimDao.findSingleReim(uName,time); 
+}
+
 export function findReimsByUsername(uName) {
     return reimDao.findReimsByUsername(uName);
 }

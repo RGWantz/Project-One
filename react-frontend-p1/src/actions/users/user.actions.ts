@@ -34,7 +34,7 @@ export const addUser = (currentUser: User) => (dispatch: any) =>  {
 }
 
 export const updateUserInfo = (currentUser: User) => (dispatch: any) =>  {
-  fetch('http://localhost:3001/reimbursements', { // double check that this is the desired url
+  fetch(`http://localhost:3001/users/${currentUser.username}`, { 
     body: JSON.stringify(currentUser), 
     credentials: 'include',
     headers: {

@@ -10,9 +10,6 @@ export function saveUser(user) {
     return userDao.saveUser(user); 
 }
 
-// export function findByYearAndTitle(year:number, title:string) {
-//     return userDao.; 
-// }
-// export function update(user) {
-//     return userDao.update(user);  
-// }
+export function update(currentUser) {
+    return userDao.update(currentUser);  
+}

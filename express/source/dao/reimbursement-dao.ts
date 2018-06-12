@@ -74,3 +74,23 @@ export function update(reim) :Promise<any> {
         ReturnValues: 'UPDATED_NEW'
     }).promise();
 }
+
+export function findSingleReim(uName:string, time:number) :Promise <any> {
+    return docClient.get({
+        TableName:'ProjectOneReimTable',
+        Key: {
+            username: uName,
+            timeSubmitted: time
+        }
+        // KeyConditionExpression: '#us = :user and timeSubmitted = :time', 
+        // ExpressionAttributeNames: {
+        //     '#us': 'username'
+        //      //this one is the same as in db
+        // },
+        // ExpressionAttributeValues: { 
+        //     ':user': uName,
+        //     ':time': time
+        // },
+
+    }).promise();
+}

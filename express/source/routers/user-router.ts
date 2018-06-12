@@ -24,6 +24,17 @@ userRouter.get('/:username', (req: Request, resp, Response) => {
     
 }); 
 
+userRouter.put('/:username', (req: Request, resp: Response) => {
+    console.log(`modifying user ${JSON.stringify(req.body)}`); 
+    userService.update(req.body) 
+        .then(data => {
+            resp.json(data);
+        })
+        .catch(err => {
+            resp.sendStatus(500);
+        });
+}); 
+
 userRouter.post('', (req:Request, resp:Response) => {  //doing this with an existing username will update the existing record, not create a new one. 
     
     userService.findUserByUsername(req.body.username) 
@@ -55,7 +66,7 @@ userRouter.post('', (req:Request, resp:Response) => {  //doing this with an exis
             firstName: req.body.firstName,
             lastName: req.body.lastName, 
             email: req.body.email,
-            role: req.body.role //or logic if a box "I am an admin" is checked. How else could I do admin verification?
+            role: req.body.role 
         }
         
         //setTimeout( () => {  

@@ -59,7 +59,7 @@ export const reimReducer = (state = initialState, action: any) => {
         }
         
       };
-      case reimTypes.UPDATE_TYPE:
+    case reimTypes.UPDATE_TYPE:
       return {
         ...state,
         currentReim: {
@@ -68,7 +68,7 @@ export const reimReducer = (state = initialState, action: any) => {
         }
         
       };
-      case reimTypes.UPDATE_APPROVER:
+    case reimTypes.UPDATE_APPROVER:
       return {
         ...state,
         wholeReim: {
@@ -77,7 +77,7 @@ export const reimReducer = (state = initialState, action: any) => {
         }
         
       };
-      case reimTypes.UPDATE_STATUS:
+    case reimTypes.UPDATE_STATUS:
       return {
         ...state,
         wholeReim: {
@@ -92,6 +92,14 @@ export const reimReducer = (state = initialState, action: any) => {
         wholeReim: {
           ...state.wholeReim,
           timeSubmitted: action.payload.subtime
+        }
+      };
+    case reimTypes.UPDATE_REIM_USERNAME:
+      return {
+        ...state,
+        wholeReim: {
+          ...state.wholeReim,
+          username: action.payload.username
         }
       };
     case reimTypes.ADD_REIM:

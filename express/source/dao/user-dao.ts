@@ -33,8 +33,7 @@ export function findUserByUsername(uName:string) :Promise<any> {
         }
     }).promise(); 
 } //I understand that get() would be desirable because we're anticipating only one response, but we can't use the FilterExpression with get()
-//TODO currently it's still returning a whole user. Adjust so that it returns a boolean? Should not be too hard 
-//TODO handle errors... maybe? does the catch just handle this? 
+//currently it's still returning a whole user. 
 //Where do I put the message that says "please enter valid uName and pw"? That should go with the HTML somehow, right? 
 
 export function findByUsername(uName:string) :Promise<any>{
@@ -46,22 +45,27 @@ export function findByUsername(uName:string) :Promise<any>{
     }).promise(); 
 }
 //possess this functionality? 
-// export function update(movie) :Promise<any> {
-//     return docClient.update({
-//         TableName: 'ProjectOneUserTable',
-//         Key: {
-//             year: movie.year,
-//             title: movie.title
-//         },
-//         UpdateExpression: 'set #r = :r , #desc = :desc', //google the dynamo db syntax for this depending on your chosen function
-//         ExpressionAttributeNames: {
-//             '#desc': 'description', 
-//             '#r': 'rating'
-//         },
-//         ExpressionAttributeValues: {
-//             ':r': movie.rating,
-//             ':desc' : movie.description
-//         },
-//         ReturnValues: 'UPDATED_NEW'
-//     }).promise();
-// }
+export function update(currentUser) :Promise<any> {
+    return docClient.update({
+        TableName: 'ProjectOneUserTable',
+        Key: {
+            username: currentUser.username
+        },
+        UpdateExpression: 'set #r = :r , #pass = :pass, #email = :email, #first = :firstname, #last = :lastname', 
+        ExpressionAttributeNames: {
+            '#first':'firstName',
+            '#last':'lastName',
+            '#email':'email',
+            '#pass': 'password', 
+            '#r': 'role'
+        },
+        ExpressionAttributeValues: {
+            ':r': currentUser.role,
+            ':pass' : currentUser.password,
+            ':email': currentUser.email,
+            ':firstname': currentUser.firstName,
+            ':lastname': currentUser.lastName,
+        },
+        ReturnValues: 'UPDATED_NEW'
+    }).promise();
+}

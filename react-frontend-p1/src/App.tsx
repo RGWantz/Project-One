@@ -10,7 +10,7 @@ import { UserInfoContainer } from './components/userInfo.container';
 import { UserSubmitContainer } from './components/userSubmit.container';
 import { UserViewContainer } from './components/userView.container';
 import './include/bootstrap';
-// import { NavComponent } from './components/nav.component';
+import { NavComponent } from './components/nav.component';
 
 
 
@@ -26,8 +26,9 @@ class App extends React.Component {
             <Route path="/signin" component={SigninContainer} />
             <Route path="/users" component={CreateUserContainer} />
             <div>
+              <NavComponent />
               <Switch>
-                {/* <NavComponent /> */}
+                
                 <Route path="/user/submit" component={UserSubmitContainer} />
                 <Route path="/user/update" component={UserInfoContainer}/>
                 <Route path="/user" component={UserViewContainer} />

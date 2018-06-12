@@ -16,6 +16,20 @@ reimbursementRouter.get('', (req: Request, resp: Response) => {
     
 }) 
 
+reimbursementRouter.get('/user/:username/time/:timeSubmitted', (req: Request, resp, Response) => {
+    const username = req.params.username;
+    const time = parseInt(req.params.timeSubmitted);
+    console.log(`retrieving reimbursement for username ${username} and time ${time}`);
+    reimService.findSingleReim(username, time)
+    .then(data => {
+        resp.json(data.Item);
+    })
+    .catch(err => { 
+        console.log(err);
+        resp.sendStatus(500);
+    });
+});
+
 reimbursementRouter.get('/user/:username', (req: Request, resp, Response) => {
     const username = req.params.username;
     console.log(`retrieving reimbursements for username ${username}`);
