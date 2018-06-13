@@ -4,19 +4,14 @@ import {Request, Response, NextFunction} from 'express';
 export const userRouter = express.Router(); 
 
 
-// userRouter.get('', (req: Request, resp: Response) => {  
-//     console.log(`Retrieving all users`)
-//     resp.json(user); 
-// }) //will I use this capacity? I have not yet planned to build in this function 
-
 userRouter.get('/:username', (req: Request, resp, Response) => { 
     const username = req.params.username; 
     console.log(`retrieving user with username ${username}`); 
     //userService.findUser(username) //another option 
     userService.findUserByUsername(username)
     .then(data => {
-        resp.json(data.Item);
-        
+        resp.json(data.Items);
+        console.log('success')
     })
     .catch(err => {
         resp.sendStatus(500);

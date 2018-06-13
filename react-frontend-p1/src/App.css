@@ -60,3 +60,13 @@
 .wide-margin {
   margin-left: 5em;
 }
+
+.error {
+  color: red;
+  font-style: italic;
+  
+}
+
+.nav-link {
+  color: white;
+}

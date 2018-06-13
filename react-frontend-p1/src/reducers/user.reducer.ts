@@ -6,12 +6,13 @@ import { userTypes } from "../actions/users/user.types";
 const initialState = {
   currentUser: {
     email: '', 
-    firstName: 'Jim',
-    lastName: 'Kirk', 
-    password: 'pass',
+    firstName: '',
+    lastName: '', 
+    password: '',
     role: 'employee',
     username: ''
-  }
+  },
+  errMsg: ''
 }
 
 export const userReducer = (state = initialState, action: any) => {
@@ -88,7 +89,25 @@ export const userReducer = (state = initialState, action: any) => {
     case userTypes.FIND_USER:
       return {
         ...state,
-        currentUser: action.payload.currentUser
+        currentUser: {
+          ...state.currentUser,
+          firstName: action.payload.currentUser[0].firstName,
+          lastName: action.payload.currentUser[0].lastName,
+          email: action.payload.currentUser[0].email,
+          password: action.payload.currentUser[0].password,
+          role: action.payload.currentUser[0].role
+        }
+      };
+    case userTypes.CHANGE_ERR:
+      return {
+        ...state,
+        errMsg: action.payload.errMsg
+      };
+    case userTypes.LOG_OUT:
+      return {
+        ...state,
+        currentUser: initialState.currentUser,
+        errMsg: 'You are signed out of your Account' 
       };
   }
 

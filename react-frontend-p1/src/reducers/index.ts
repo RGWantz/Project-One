@@ -17,7 +17,7 @@ export interface IState {
 
 export interface IUser {
   currentUser:User
-
+  errMsg:string
 }
 
 export interface IReimState {
@@ -37,8 +37,6 @@ export interface IAdminState {
 //   password: string,
 //   errorMessage: string
 // }
-
-// this is the one with the problem 
 
 export const state = combineReducers<IState>({
   admin: adminReducer,

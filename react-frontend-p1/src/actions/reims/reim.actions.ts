@@ -3,16 +3,17 @@ import { reimTypes } from './reim.types';
 
 
 export const submitReim = (wholeReim: any) => (dispatch: any) =>  {
-  fetch('http://localhost:3001/reimbursements', { 
-    body: JSON.stringify(wholeReim), 
-    credentials: 'include',
+  fetch("http://localhost:3001/reimbursements", { 
     headers: {
       'content-type': 'application/json'
     },
+    body: JSON.stringify(wholeReim), 
+    credentials: 'include',
+    
     method: 'POST'
   })
     .then(resp => {
-      // console.log(resp.status)
+      console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -27,7 +28,7 @@ export const submitReim = (wholeReim: any) => (dispatch: any) =>  {
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
     });
 }
 
@@ -62,7 +63,8 @@ export const updateReim = (wholeReim:any) => (dispatch: any) =>  {
 export const addReim = (newReims: Reimbursement[], currentReim: Reimbursement) => {
   return {
     payload: {
-      newReims: newReims.push(currentReim),
+      // newReims: newReims.push(currentReim),
+      newReims: [...newReims, currentReim],
     },
     type: reimTypes.ADD_REIM,
   }

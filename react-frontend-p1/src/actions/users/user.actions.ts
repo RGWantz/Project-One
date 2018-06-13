@@ -1,9 +1,7 @@
 import { User } from '../../models/user';
 import { userTypes } from './user.types';
 
-/*TODO 
-  decide how to send errors, status 
-*/
+
 export const addUser = (currentUser: User) => (dispatch: any) =>  {
   fetch('http://localhost:3001/users', { 
     body: JSON.stringify(currentUser), 
@@ -34,13 +32,13 @@ export const addUser = (currentUser: User) => (dispatch: any) =>  {
 }
 
 export const updateUserInfo = (currentUser: User) => (dispatch: any) =>  {
-  fetch(`http://localhost:3001/users/${currentUser.username}`, { 
+  fetch(`http://localhost:3001/users`, { 
     body: JSON.stringify(currentUser), 
     credentials: 'include',
     headers: {
       'content-type': 'application/json'
     },
-    method: 'PUT'
+    method: 'POST' // I know, it's not PUT or UPDATE, but those would not work even though they can be called from Postman
   })
     .then(resp => {
       console.log(resp.status)
@@ -82,6 +80,24 @@ export const findUser = (username: string) => (dispatch: any) =>  {
     .catch(err => {
       console.log(err);
     });
+}
+
+export const changeErr = (errMsg: string) => {
+  return {
+    payload: {
+      errMsg
+    },
+    type: userTypes.CHANGE_ERR,
+  }
+}
+
+export const logOut = (e: string) => {
+  return {
+    payload: {
+      e
+    },
+    type: userTypes.LOG_OUT,
+  }
 }
 
 export const updateUsername = (username: string) => {

@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
-import { changeSearchUser, getReimsByUser} from '../actions/admin/admin.actions';
-import { findUser } from '../actions/users/user.actions';
+import { getReimsByUser} from '../actions/admin/admin.actions';
 import { IState } from '../reducers';
 import { UserViewComponent } from './userView.component';
 
 
-
-
-const mapStateToProps = (state: IState) => (state.user);// determine which state... 
+const mapStateToProps = (state: IState) => ({
+  admin: state.admin,
+  user: state.user
+}); 
     
 export const mapDispatchToProps = {
-    changeSearchUser,
-    findUser,
     getReimsByUser
 };
 

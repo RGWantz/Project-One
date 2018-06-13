@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { findUser, updatePassword, updateUsername } from '../actions/users/user.actions';
+import { changeErr, findUser, logOut, updateUsername } from '../actions/users/user.actions';
 import { IState } from '../reducers';
 import { SigninComponent } from './signin.component';
 
@@ -9,8 +9,9 @@ import { SigninComponent } from './signin.component';
 const mapStateToProps = (state: IState) => (state.user);// determine which state... 
     
 export const mapDispatchToProps = {
+    changeErr,  
     findUser,
-    updatePassword,
+    logOut,
     updateUsername
 };
 

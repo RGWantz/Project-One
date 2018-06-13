@@ -1,32 +1,59 @@
 import * as React from 'react'; 
 import RevLogo from './assets/rev-logo-3.png';
-import { User } from '../models/user';
+// import { User } from '../models/user';
 import { IUser } from '../reducers';
 
 interface IProp extends IUser {
-    findUser: (currentUser:User) => void;
-    updatePassword: (password:string) => void;
+    changeErr: (errMsg:string) => void;
+    findUser: (username:string) => void;
+    logOut: (e:string) => void;
     updateUsername: (username:string) => void;
 }
+let tempPass = ''; 
 
 export class SigninComponent extends React.Component<IProp,any> {
     constructor(props: any) {
         super(props);
+    }
+    public changeTemp = (e: any) :void => {
+        const temp = e.target.value;
+        tempPass = temp;
+    }
+    
+    public changeErr = (errMsg:string) => { 
+        this.props.changeErr(errMsg); 
     }
 
     public updateUsername = (e:any) => { 
         const username = e.target.value;
         this.props.updateUsername(username); 
     }
-
-    public updatePassword = (e:any) => {
-        const password = e.target.value;
-        this.props.updatePassword(password); 
-    }
     
     public submit = (e:any) => {
         e.preventDefault();
-        this.props.findUser(this.props.currentUser); // need to make sure that it sends the username part of it like I want it to
+        new Promise((resolve, reject) => { // It isn't waiting! 
+          this.props.findUser(this.props.currentUser.username); 
+            resolve();
+          }).then(() => {
+
+              if (this.props.currentUser.email) {
+                  if (this.props.currentUser.password === tempPass) {
+                      // this.props.history.push('/user'); 
+                  }
+                  else {
+                      this.changeErr('Password does not match. Please try again');
+                      console.log(tempPass);
+                  }
+              } else {
+                  this.changeErr('This is not an existing Username');
+                  console.log(tempPass);
+              }
+              console.log(this.props.currentUser)
+        });
+    } 
+
+    public componentDidMount() {
+        this.props.logOut('1');
     }
 
     public render() {
@@ -40,30 +67,25 @@ export class SigninComponent extends React.Component<IProp,any> {
                         <h4 className="login-para">
                         Log in to your Account 
                         </h4>
-                        
+                        <span className="error">{this.props.errMsg}</span>
                         <form onSubmit={this.submit}>
                             <div className="form-group">
                                 <label >Username</label>
                                 <input value={this.props.currentUser.username} 
-                                    onChange= {this.updateUsername} // determine if bind needed 
+                                    onChange= {this.updateUsername} 
                                     type="text" 
                                     className="form-control" 
                                     id="InputUser1" placeholder="Enter username"/>
                             </div>
                             <div className="form-group">
                                     <label >Password</label>
-                                    <input value={this.props.currentUser.password} 
-                                    onChange= {this.updatePassword}
+                                    <input onChange= {this.changeTemp}
                                     type="password" 
                                     className="form-control" 
                                     id="InputPassword1" 
                                     placeholder="Enter Password"/>
                             </div>
-                                    <div className="form-group form-check">
-                                        <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                            <label className="form-check-label">I am an admin</label>
-                                    </div>
-                                        <button type="submit" className="btn btn-secondary">Sign in</button>
+                                <button type="submit" className="btn btn-secondary">Sign in</button>
                         </form>
                         <br/>
                     </div>

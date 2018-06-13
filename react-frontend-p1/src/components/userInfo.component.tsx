@@ -1,8 +1,43 @@
 import * as React from 'react'; 
+import { IUser } from '../reducers';
+import { User } from '../models/user';
 
+interface IProp extends IUser {
+    updateEmail: (email: string) => void;
+    updateLastname: (lastname:string) => void;
+    updateFirstname: (firstname: string) => void;
+    updatePassword: (password: string) => void;
+    updateUserInfo: (currentUser:User) => void;
+}
 
-export class UserInfoComponent extends React.Component<any,any> {
+export class UserInfoComponent extends React.Component<IProp,any> {
+    constructor(props: any) {
+        super(props);
+    }
 
+    public updateUserInfo = (e:any) => {
+        this.props.updateUserInfo(this.props.currentUser); 
+    }
+
+    public updatePassword = (e:any) => {
+        const password = e.target.value;
+        this.props.updatePassword(password); 
+    }
+
+    public updateFirstname = (e:any) => {
+        const firstname = e.target.value;
+        this.props.updateFirstname(firstname); 
+    }
+
+    public updateLastname = (e:any) => {
+        const lastname = e.target.value;
+        this.props.updateLastname(lastname); 
+    }
+
+    public updateEmail = (e:any) => {
+        const email = e.target.value;
+        this.props.updateEmail(email); 
+    }
     public render() {
         return(
             <div className="container">
@@ -23,36 +58,41 @@ export class UserInfoComponent extends React.Component<any,any> {
                     </div>
                     <div className="row">
                         <br />
-                        <form>
+                        <form onSubmit={this.updateUserInfo}>
                             <div className="form-group">
                                 <label htmlFor="input-name">First Name: </label>
-                                <input type="text"
+                                <input onChange={this.updateFirstname}
+                                    type="text"
                                     className="form-control"
                                     id="InputFName"
-                                    placeholder="Current First Name" />
-                                {/* defaultValue will be {this.props.currentUser.firstname} */}
+                                    defaultValue={this.props.currentUser.firstName}
+                                     required/>
+                                
                             </div>
                             <div className="form-group">
                                 <label htmlFor="input-name">Last Name: </label>
-                                <input type="text"
+                                <input onChange={this.updateLastname}
+                                    type="text"
                                     className="form-control"
                                     id="InputLName"
-                                    placeholder="Current Last Name" />
+                                    defaultValue={this.props.currentUser.lastName} required/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="input-email">Email Address:</label>
-                                <input type="email"
+                                <input onChange={this.updateEmail}
+                                    type="email"
                                     className="form-control"
                                     id="InputEmail"
-                                    placeholder="Current Email" />
+                                    defaultValue={this.props.currentUser.email} required/>
 
                             </div>
                             <div className="form-group">
                                 <label htmlFor="input-pass">Password:</label>
-                                <input type="password"
+                                <input onChange={this.updatePassword}
+                                    type="password"
                                     className="form-control"
                                     id="InputPassword1"
-                                    placeholder="Current Password" />
+                                    defaultValue={this.props.currentUser.password} required/>
                             </div>
                             <button type="submit" className="btn btn-secondary">Save Changes</button>
                         </form>

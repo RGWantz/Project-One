@@ -8,26 +8,30 @@ import { userReducer } from './user.reducer';
 
 
 export interface IState2 {
-    admin: IAdminState2,
-    reim: IReimState2, 
-    user: IUserState2
-}
-
-export interface IAdminState2 {
     dispReims: any[],
     searchStatus: string,
-    searchUser: string
-}
-
-export interface IReimState2 {
+    searchUser: string,
     currentReim: Reimbursement,
     newReims: any [],
-    wholeReim: any
+    wholeReim: any,
+    currentUser: User
+     
+    // admin: IAdminState2,
+    // reim: IReimState2, 
+    // user: IUserState2
 }
 
-export interface IUserState2 {
-    currentUser: User
-}
+// export interface IAdminState2 {
+    
+// }
+
+// export interface IReimState2 {
+    
+// }
+
+// export interface IUserState2 {
+    
+// }
 
 export const state = combineReducers<IState2> ({
     admin: adminReducer,
