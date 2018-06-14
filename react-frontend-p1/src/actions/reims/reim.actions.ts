@@ -28,15 +28,40 @@ export const submitReim = (wholeReim: any) => (dispatch: any) => {
     });
 };
 
+export const getSingleReim = (username: string, time: number) => (
+  dispatch: any
+) => {
+  fetch(`http://localhost:3001/reimbursements/user/${username}/time/${time}`, {
+    credentials: "include"
+  })
+    .then(resp => {
+      console.log(resp.status);
+      if (resp.status === 401 || resp.status === 403) {
+        return;
+      }
+      return resp.json();
+    })
+    .then(wholeReim => {
+      dispatch({
+        payload: {
+          wholeReim
+        },
+        type: reimTypes.GET_SINGLE_REIM
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const updateReim = (wholeReim: any) => (dispatch: any) => {
   fetch("http://localhost:3001/reimbursements", {
-    // double check that this is the desired url
     body: JSON.stringify(wholeReim),
     credentials: "include",
     headers: {
       "content-type": "application/json"
     },
-    method: "PUT"
+    method: "POST"
   })
     .then(resp => {
       console.log(resp.status);

@@ -5,6 +5,7 @@ interface IProp extends IAdminState, IReimState, IUser {
   admin: any;
   reim: any;
   user: any;
+  changeErr: (errMsg: string) => void;
   getSingleReim: (username: string, time: number) => any;
   getReimsByUser: (username: string) => any[];
   getReimsByStatus: (status: string) => any[];
@@ -59,20 +60,28 @@ export class AdminViewComponent extends React.Component<IProp, any> {
   };
 
   public updateReim = (e: any) => {
-    new Promise((resolve, reject) => {
-      new Promise((res, rej) => {
-        this.props.getSingleReim(
-          this.props.reim.wholeReim.username,
-          this.props.reim.wholeReim.timeSubmitted
-        );
-        res();
-      }).then(() => {
+    new Promise((res, rej) => {
+      this.props.getSingleReim(
+        this.props.reim.wholeReim.username,
+        this.props.reim.wholeReim.timeSubmitted
+      );
+      res();
+    }).then(() => {
+      setTimeout(() => {
         this.updateApprover(this.props.user.currentUser.username);
         this.updateStatus(this.props.admin.searchStatus);
-      });
-      resolve();
-    }).then(() => {
-      // this.props.updateReim(this.props.reim.wholeReim);
+        if (
+          this.props.reim.wholeReim.username ===
+          this.props.user.currentUser.username
+        ) {
+          this.props.changeErr("Cannot update your own reimbursement requests");
+        } else {
+          this.props.updateReim(this.props.reim.wholeReim);
+          setTimeout(() => {
+            this.props.changeErr("Reimbursement updated successfully");
+          }, 500);
+        }
+      }, 1000);
     });
   };
 
@@ -82,10 +91,14 @@ export class AdminViewComponent extends React.Component<IProp, any> {
       this.props.reim.wholeReim.timeSubmitted
     );
   };
-  // and then also call this.updateReim ... but watch out for async because wholeReim first needs to be updated
 
   public componentDidMount() {
     this.getReimsByStatus("pending");
+  }
+
+  public componentWillUnmount() {
+    this.props.changeErr("");
+    this.getReimsByUser("");
   }
 
   public render() {
@@ -98,7 +111,6 @@ export class AdminViewComponent extends React.Component<IProp, any> {
           <div className="row">
             <form onSubmit={this.getReimsByStatus}>
               <div className="col">
-                {/* <label className="disappearing">Status:</label> */}
                 <select
                   value={this.props.admin.searchStatus}
                   onChange={this.changeSearchStatus}
@@ -215,6 +227,9 @@ export class AdminViewComponent extends React.Component<IProp, any> {
                   className="form-control"
                   id="FormControlSelect1"
                 >
+                  <option value="choose" hidden>
+                    Select
+                  </option>
                   <option value="approved">approved</option>
                   <option value="denied">denied</option>
                 </select>
@@ -224,6 +239,7 @@ export class AdminViewComponent extends React.Component<IProp, any> {
             <button type="submit" className="btn btn-secondary">
               Update Reimbursement
             </button>
+            <span className="error r-margin">{this.props.user.errMsg}</span>
           </form>
         </div>
       );

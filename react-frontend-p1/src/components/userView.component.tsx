@@ -15,7 +15,11 @@ export class UserViewComponent extends React.Component<IProp,any> {
     
     public componentDidMount(){ 
         this.props.getReimsByUser(this.props.user.currentUser.username); 
-    };
+    }
+
+    public componentWillUnmount() {
+        this.props.getReimsByUser(""); 
+    }
     
     public render() {
         return(

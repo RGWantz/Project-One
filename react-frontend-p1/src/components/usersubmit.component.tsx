@@ -33,10 +33,10 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
     });
   };
 
-  public updateSubmitTime = (e: any) => {
-    const time = parseInt(e.target.value, 10);
-    this.props.updateSubmitTime(time);
-  };
+  // public updateSubmitTime = (e: any) => {
+  //   const time = parseInt(e.target.value, 10);
+  //   this.props.updateSubmitTime(time);
+  // };
 
   public updateDescription = (e: any) => {
     const desc = e.target.value;
@@ -49,7 +49,7 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
   };
 
   public updateAmount = (e: any) => {
-    const amount = e.target.value;
+    const amount = parseInt(e.target.value, 10);
     this.props.updateAmount(amount);
   };
 
@@ -59,8 +59,7 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
   };
 
   public updateTime = (e: any) => {
-    const time = e.target.value;
-    this.props.updateTime(time);
+    this.props.updateTime(Date.now());
   };
 
   public updateType = (e: any) => {
@@ -97,6 +96,12 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
 
   public componentDidMount() {
     console.log("props: ", this.props);
+  }
+
+  public componentWillUnmount() {
+    this.props.updateSubmitTime(0);
+    this.props.updateReimUsername("");
+    this.props.estReimItems([], this.props.reim.wholeReim.items);
   }
 
   public render() {

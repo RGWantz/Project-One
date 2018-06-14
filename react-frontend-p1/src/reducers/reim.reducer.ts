@@ -1,26 +1,24 @@
 import { reimTypes } from "../actions/reims/reim.types";
 // import { User } from './../models/user';
 
-
 const initialState = {
   currentReim: {
     amount: 0,
-    description:'', 
-    timeOfExpense:  0, 
-    title: '',
-    type: '', 
-
+    description: "",
+    timeOfExpense: 0,
+    title: "",
+    type: ""
   },
   newReims: [],
   wholeReim: {
-    approver: 'pending',
-    items: {}, 
-    receipts: [], 
-    status: 'pending',
+    approver: "pending",
+    items: {},
+    receipts: [],
+    status: "pending",
     timeSubmitted: 0,
-    username: '' // how do I make this the username of currentUser from the state? 
+    username: "" // how do I make this the username of currentUser from the state?
   }
-}
+};
 
 export const reimReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -29,9 +27,8 @@ export const reimReducer = (state = initialState, action: any) => {
         ...state,
         currentReim: {
           ...state.currentReim,
-          amount: action.payload.amount,
+          amount: action.payload.amount
         }
-        
       };
     case reimTypes.UPDATE_DESC:
       return {
@@ -40,7 +37,6 @@ export const reimReducer = (state = initialState, action: any) => {
           ...state.currentReim,
           description: action.payload.description
         }
-        
       };
     case reimTypes.UPDATE_TIME:
       return {
@@ -57,7 +53,6 @@ export const reimReducer = (state = initialState, action: any) => {
           ...state.currentReim,
           title: action.payload.title
         }
-        
       };
     case reimTypes.UPDATE_TYPE:
       return {
@@ -66,7 +61,6 @@ export const reimReducer = (state = initialState, action: any) => {
           ...state.currentReim,
           type: action.payload.type
         }
-        
       };
     case reimTypes.UPDATE_APPROVER:
       return {
@@ -75,7 +69,6 @@ export const reimReducer = (state = initialState, action: any) => {
           ...state.wholeReim,
           approver: action.payload.approver
         }
-        
       };
     case reimTypes.UPDATE_STATUS:
       return {
@@ -84,7 +77,6 @@ export const reimReducer = (state = initialState, action: any) => {
           ...state.wholeReim,
           status: action.payload.status
         }
-        
       };
     case reimTypes.UPDATE_SUBMIT_TIME:
       return {
@@ -107,11 +99,10 @@ export const reimReducer = (state = initialState, action: any) => {
         ...state,
         currentReim: {
           amount: 0,
-          description:'', 
-          timeOfExpense:  0, 
-          title: '',
-          type: '', 
-      
+          description: "",
+          timeOfExpense: 0,
+          title: "",
+          type: ""
         },
         newReims: action.payload.newReims
       };
@@ -128,24 +119,29 @@ export const reimReducer = (state = initialState, action: any) => {
       return {
         ...state,
         wholeReim: {
-          approver: 'pending',
-          items: {}, 
-          receipts: [], 
-          status: 'pending',
+          approver: "pending",
+          items: {},
+          receipts: [],
+          status: "pending",
           timeSubmitted: 0,
-          username: ''  
+          username: ""
         }
+      };
+    case reimTypes.GET_SINGLE_REIM:
+      return {
+        ...state,
+        wholeReim: action.payload.wholeReim
       };
     case reimTypes.UPDATE_REIM:
       return {
         ...state,
         wholeReim: {
-          approver: 'pending',
-          items: {}, 
-          receipts: [], 
-          status: 'pending',
+          approver: "pending",
+          items: {},
+          receipts: [],
+          status: "pending",
           timeSubmitted: 0,
-          username: ''  
+          username: ""
         }
       };
   }

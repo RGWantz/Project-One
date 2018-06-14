@@ -1,12 +1,11 @@
 import { adminTypes } from "../actions/admin/admin.types";
 // import { User } from './../models/user';
 
-
 const initialState = {
   dispReims: [],
-  searchStatus: 'pending',
-  searchUser: ''
-}
+  searchStatus: "pending",
+  searchUser: ""
+};
 
 export const adminReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -14,19 +13,12 @@ export const adminReducer = (state = initialState, action: any) => {
       return {
         ...state,
         searchStatus: action.payload.status
-        
       };
     case adminTypes.CHANGE_USER:
       return {
         ...state,
         searchUser: action.payload.user
-        
       };
-    case adminTypes.GET_SINGLE_REIM:
-      return {
-        ...state,
-        wholeReim: action.payload.wholeReim
-      }
     case adminTypes.GETREIMS_BYSTATUS:
       return {
         ...state,
