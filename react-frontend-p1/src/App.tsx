@@ -12,32 +12,27 @@ import { UserViewContainer } from './components/userView.container';
 import './include/bootstrap';
 import { NavComponent } from './components/nav.component';
 
-
-
-
-
 class App extends React.Component {
   public render() {
     return (
       <Provider store = {store}>
       <HashRouter> 
         <div>
-        
           <Switch>
             <Route path="/signin" component={SigninContainer} />
             <Route path="/users" component={CreateUserContainer} />
             <div>
               <NavComponent />
               <Switch>
-                
                 <Route path="/user/submit" component={UserSubmitContainer} />
                 <Route path="/user/update" component={UserInfoContainer}/>
                 <Route path="/user" component={UserViewContainer} />
                 <Route path="/admin" component={AdminViewContainer}/>
               </Switch>
             </div>
-            <Route component={SigninContainer} />
+            <Route path="/" component={SigninContainer} />
           </Switch>
+          
         </div>
       </HashRouter>
       </Provider>

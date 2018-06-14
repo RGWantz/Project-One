@@ -12,6 +12,7 @@ export const NavComponent: React.StatelessComponent<{}> = () => {
                     <Link to="/user" className="unset-anchor nav-link">Welcome</Link>
                     <Link to="/user/update" className="unset-anchor nav-link">Update User Info</Link>
                     <Link to="/user/submit" className="unset-anchor nav-link">Add Submission</Link>
+                    <Link to="/admin" className="unset-anchor nav-link">Administration</Link>
                     <Link to="/signin" className="unset-anchor nav-link">Log Out</Link>
                 </div>
             </nav>

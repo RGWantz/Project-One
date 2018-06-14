@@ -3,7 +3,7 @@ import { adminTypes } from './admin.types';
 export const getSingleReim = (username: string, time: number) => (dispatch: any) =>  {
   fetch(`http://localhost:3001/reimbursements/user/${username}/time/${time}`, { credentials: 'include' })
     .then(resp => {
-      // console.log(resp.status)
+      console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -18,7 +18,7 @@ export const getSingleReim = (username: string, time: number) => (dispatch: any)
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
     });
 }
 

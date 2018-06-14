@@ -2,18 +2,17 @@
 import { userTypes } from "../actions/users/user.types";
 // import { User } from './../models/user';
 
-
 const initialState = {
   currentUser: {
-    email: '', 
-    firstName: '',
-    lastName: '', 
-    password: '',
-    role: 'employee',
-    username: ''
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    role: "employee",
+    username: ""
   },
-  errMsg: ''
-}
+  errMsg: ""
+};
 
 export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -22,9 +21,8 @@ export const userReducer = (state = initialState, action: any) => {
         ...state,
         currentUser: {
           ...state.currentUser,
-          username: action.payload.username,
+          username: action.payload.username
         }
-        
       };
     case userTypes.UPDATE_PASS:
       return {
@@ -33,7 +31,6 @@ export const userReducer = (state = initialState, action: any) => {
           ...state.currentUser,
           password: action.payload.password
         }
-        
       };
     case userTypes.UPDATE_FNAME:
       return {
@@ -50,7 +47,6 @@ export const userReducer = (state = initialState, action: any) => {
           ...state.currentUser,
           lastName: action.payload.lastname
         }
-        
       };
     case userTypes.UPDATE_EMAIL:
       return {
@@ -59,7 +55,6 @@ export const userReducer = (state = initialState, action: any) => {
           ...state.currentUser,
           email: action.payload.email
         }
-        
       };
     case userTypes.UPDATE_ROLE:
       return {
@@ -68,19 +63,18 @@ export const userReducer = (state = initialState, action: any) => {
           ...state.currentUser,
           role: action.payload.role
         }
-        
       };
     case userTypes.ADD_USER:
       return {
-        ...state,
-        currentUser: {
-          email: '', 
-          firstName: '',
-          lastName: '', 
-          password: 'pass',
-          role: 'employee',
-          username: ''
-        }
+        ...state
+        // currentUser: {
+        //   email: "",
+        //   firstName: "",
+        //   lastName: "",
+        //   password: "pass",
+        //   role: "employee",
+        //   username: ""
+        // }
       };
     case userTypes.UPDATE_USERINFO:
       return {
@@ -96,7 +90,8 @@ export const userReducer = (state = initialState, action: any) => {
           email: action.payload.currentUser[0].email,
           password: action.payload.currentUser[0].password,
           role: action.payload.currentUser[0].role
-        }
+        },
+        errMsg: action.payload.errMsg
       };
     case userTypes.CHANGE_ERR:
       return {
@@ -107,7 +102,7 @@ export const userReducer = (state = initialState, action: any) => {
       return {
         ...state,
         currentUser: initialState.currentUser,
-        errMsg: 'You are signed out of your Account' 
+        errMsg: "You are signed out of your Account"
       };
   }
 

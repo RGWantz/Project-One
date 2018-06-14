@@ -23,8 +23,12 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /************************************
@@ -32,17 +36,17 @@
 ************************************/
 
 .login-box {
-  background-color:khaki;
-  border: 3px solid darkorange; 
+  background-color: khaki;
+  border: 3px solid darkorange;
 }
 
 .login-para {
   text-align: center;
 }
 
-.photo-area{
+.photo-area {
   text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin-left: 1em;
 }
 
@@ -50,7 +54,6 @@
   max-width: 100%;
   max-height: 75%;
   margin-left: 0em;
-  
 }
 
 .r-margin {
@@ -64,9 +67,13 @@
 .error {
   color: red;
   font-style: italic;
-  
 }
 
 .nav-link {
   color: white;
+}
+
+.announce {
+  margin-left: 2em;
+  padding-top: 2em;
 }

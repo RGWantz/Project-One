@@ -6,7 +6,7 @@ import { SigninComponent } from './signin.component';
 
 
 
-const mapStateToProps = (state: IState) => (state.user);// determine which state... 
+const mapStateToProps = (state: IState) => (state.user);
     
 export const mapDispatchToProps = {
     changeErr,  

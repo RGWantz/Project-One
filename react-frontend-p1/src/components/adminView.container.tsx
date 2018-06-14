@@ -9,7 +9,11 @@ import { AdminViewComponent } from './adminView.component';
 
 
 
-const mapStateToProps = (state: IState) => (state.admin);// can I do this? 
+const mapStateToProps = (state: IState) => ({
+  admin: state.admin,
+  reim: state.reim, 
+  user: state.user
+}); 
     
 export const mapDispatchToProps = {
     changeSearchStatus,  
