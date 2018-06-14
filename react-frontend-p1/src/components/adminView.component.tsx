@@ -57,6 +57,7 @@ export class AdminViewComponent extends React.Component<IProp, any> {
 
   public getReimsByUser = (e: any) => {
     this.props.getReimsByUser(this.props.admin.searchUser);
+    this.props.changeSearchUser("");
   };
 
   public updateReim = (e: any) => {
@@ -79,6 +80,9 @@ export class AdminViewComponent extends React.Component<IProp, any> {
           this.props.updateReim(this.props.reim.wholeReim);
           setTimeout(() => {
             this.props.changeErr("Reimbursement updated successfully");
+            this.props.changeSearchStatus("pending");
+            this.props.updateReimUsername("");
+            this.props.updateSubmitTime(0);
           }, 500);
         }
       }, 1000);

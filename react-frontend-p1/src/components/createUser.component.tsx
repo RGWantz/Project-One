@@ -61,6 +61,15 @@ export class CreateUserComponent extends React.Component<IProp, any> {
       password: ""
     };
 
+    const storeUser = {
+      email: this.props.currentUser.email,
+      firstName: this.props.currentUser.firstName,
+      lastName: this.props.currentUser.lastName,
+      password: this.props.currentUser.password,
+      role: "employee",
+      username: this.props.currentUser.username
+    };
+
     new Promise((resolve, reject) => {
       this.props.findUser(credentials);
       resolve();
@@ -72,8 +81,16 @@ export class CreateUserComponent extends React.Component<IProp, any> {
             this.changeErr(`Username is already taken.
                     Please enter another.`);
           } else {
+            this.changeErr(`Creating User Account`);
+            this.props.updateFirstname(storeUser.firstName);
+            this.props.updateLastname(storeUser.lastName);
+            this.props.updatePassword(storeUser.password);
+            this.props.updateEmail(storeUser.email);
+            this.props.updateUsername(storeUser.username);
             this.addUser(this.props.currentUser);
-            this.props.history.push("/signin");
+            setTimeout(() => {
+              this.props.history.push("/signin");
+            }, 1000);
           }
         }, 1500);
       })

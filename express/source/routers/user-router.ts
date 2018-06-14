@@ -64,18 +64,13 @@ userRouter.post('', (req: Request, resp: Response) => {  //doing this with an ex
     userService.findUserByUsername(req.body.username)
         .then(data => {
             console.log(data.Items);
-            if (data.Items === []) { //I can't get this to happen! 
-                console.log('Duplicate username caused request to fail');
-                resp.sendStatus(400);
-            } else {
+            
                 if (!req.body.username || !req.body.password) { //or do more checks to ensure it's a string, etc. FULLY VALIDATE THINGS
                     resp.sendStatus(401);
                 } else {
                     createIt();
                     resp.sendStatus(201);
                 }
-            }
-            //
 
         })
         .catch(err => {

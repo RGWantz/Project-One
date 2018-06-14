@@ -6,7 +6,7 @@ import { Reimbursement } from "../models/reimbursement";
 interface IProp extends IReimState, IUser {
   reim: any;
   user: any;
-  makeAsync: (bfunc: any) => Promise<any>;
+  changeErr: (errMsg: string) => void;
   addReim: (newReims: Reimbursement[], currentReim: Reimbursement) => void;
   estReimItems: (newReims: Reimbursement[], items: any) => void;
   submitReim: (wholeReim: any) => void;
@@ -29,14 +29,15 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
       this.props.updateTime(Date.now());
       resolve();
     }).then(() => {
-      this.props.addReim(this.props.reim.newReims, this.props.reim.currentReim);
+      setTimeout(() => {
+        this.props.addReim(
+          this.props.reim.newReims,
+          this.props.reim.currentReim
+        );
+        this.props.changeErr("Reimbursement added to list for submission");
+      }, 500);
     });
   };
-
-  // public updateSubmitTime = (e: any) => {
-  //   const time = parseInt(e.target.value, 10);
-  //   this.props.updateSubmitTime(time);
-  // };
 
   public updateDescription = (e: any) => {
     const desc = e.target.value;
@@ -90,18 +91,20 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
 
       resolve();
     }).then(() => {
-      this.props.submitReim(this.props.reim.wholeReim); // something is preventing this
+      this.props.submitReim(this.props.reim.wholeReim);
+      this.props.changeErr("Reimbursement submitted successfully");
     });
   };
 
   public componentDidMount() {
-    console.log("props: ", this.props);
+    this.props.changeErr("");
   }
 
   public componentWillUnmount() {
     this.props.updateSubmitTime(0);
     this.props.updateReimUsername("");
     this.props.estReimItems([], this.props.reim.wholeReim.items);
+    this.props.changeErr("");
   }
 
   public render() {
@@ -181,6 +184,7 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
             </div>
           </div>
         </form>
+        <span className="error r-margin">{this.props.user.errMsg}</span>
       </div>
     );
   }
