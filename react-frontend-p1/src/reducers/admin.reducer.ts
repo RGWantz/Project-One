@@ -1,5 +1,4 @@
 import { adminTypes } from "../actions/admin/admin.types";
-// import { User } from './../models/user';
 
 const initialState = {
   dispReims: [],

@@ -11,7 +11,6 @@ export const addUser = (currentUser: User) => (dispatch: any) => {
     method: "POST"
   })
     .then(resp => {
-      // console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -37,7 +36,7 @@ export const updateUserInfo = (currentUser: User) => (dispatch: any) => {
     headers: {
       "content-type": "application/json"
     },
-    method: "POST" // I know, it's not PUT or UPDATE, but those would not work even though they can be called from Postman
+    method: "POST"
   })
     .then(resp => {
       console.log(resp.status);
@@ -55,7 +54,7 @@ export const updateUserInfo = (currentUser: User) => (dispatch: any) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
     });
 };
 
@@ -69,15 +68,9 @@ export const findUser = (credentials: any) => (dispatch: any) => {
     credentials: "include"
   })
     .then(resp => {
-      // console.log("first then: ", resp.json());
-      console.log(resp.status);
-      // if (resp.status === 401 || resp.status === 403) {
-      //   return;
-      // }
       return resp.json();
     })
     .then(currentUser => {
-      console.log("next then: ", currentUser.error);
       if (!currentUser.error) {
         return dispatch({
           payload: {
@@ -87,7 +80,6 @@ export const findUser = (credentials: any) => (dispatch: any) => {
           type: userTypes.FIND_USER
         });
       } else {
-        console.log("got to else statement");
         return dispatch({
           payload: {
             currentUser: [
@@ -106,31 +98,9 @@ export const findUser = (credentials: any) => (dispatch: any) => {
         });
       }
     })
-    .catch(err => console.log("message from server: ", err));
-};
-
-export const findUser2 = (username: string) => (dispatch: any) => {
-  // fetch("http://localhost:3001/users/" + username, { credentials: "include" })
-  //   .then(resp => {
-  //     console.log("now in find User fetch");
-  //     console.log(resp.status);
-  //     if (resp.status === 401 || resp.status === 403) {
-  //       return;
-  //     }
-  //     return resp.json();
-  //   })
-  //   .then(currentUser => {
-  //     return dispatch({
-  //       payload: {
-  //         currentUser
-  //       },
-  //       type: userTypes.FIND_USER
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  return "continue promise";
+    .catch(err => {
+      // console.log("message from server: ", err)
+    });
 };
 
 export const changeErr = (errMsg: string) => {

@@ -1,25 +1,31 @@
-import { connect } from 'react-redux';
-import { addUser, changeErr, findUser, updateEmail, updateFirstname, updateLastname, updatePassword, updateUsername} from '../actions/users/user.actions';
-import { IState } from '../reducers';
-import { CreateUserComponent } from './createUser.component';
+import { connect } from "react-redux";
+import {
+  addUser,
+  changeErr,
+  findUser,
+  updateEmail,
+  updateFirstname,
+  updateLastname,
+  updatePassword,
+  updateUsername
+} from "../actions/users/user.actions";
+import { IState } from "../reducers";
+import { CreateUserComponent } from "./createUser.component";
 
+const mapStateToProps = (state: IState) => state.user;
 
-
-
-const mapStateToProps = (state: IState) => (state.user); // assuming this exists
-    
 export const mapDispatchToProps = {
-    addUser,
-    changeErr,
-    findUser,
-    updateEmail,
-    updateFirstname,
-    updateLastname,
-    updatePassword,
-    updateUsername
+  addUser,
+  changeErr,
+  findUser,
+  updateEmail,
+  updateFirstname,
+  updateLastname,
+  updatePassword,
+  updateUsername
 };
 
 export const CreateUserContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CreateUserComponent);

@@ -94,18 +94,9 @@ export class CreateUserComponent extends React.Component<IProp, any> {
           }
         }, 1500);
       })
-      .catch(err => console.log("error on server: ", err));
-    //
-    // new Promise((resolve, reject) => { // It isn't waiting!
-    //   this.props.findUser(this.props.currentUser.username);
-    //     resolve();
-    //   }).then(() => {
-
-    //       if (this.props.currentUser.password) {
-    //           this.changeErr('This Username already exists');
-    //        }
-    //       console.log(this.props.currentUser)
-    // });
+      .catch(err => {
+        // console.log("error on server: ", err)
+      });
   };
 
   public componentDidMount() {
@@ -134,7 +125,6 @@ export class CreateUserComponent extends React.Component<IProp, any> {
                   id="InputFName"
                   placeholder="First Name"
                 />
-
                 <input
                   value={this.props.currentUser.lastName}
                   onChange={this.updateLastname}

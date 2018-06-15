@@ -5,7 +5,6 @@ export const getReimsByUser = (username: string) => (dispatch: any) => {
     credentials: "include"
   })
     .then(resp => {
-      // console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -29,7 +28,6 @@ export const getReimsByStatus = (status: string) => (dispatch: any) => {
     credentials: "include"
   })
     .then(resp => {
-      // console.log(resp.status)
       if (resp.status === 401 || resp.status === 403) {
         return;
       }
@@ -49,15 +47,12 @@ export const getReimsByStatus = (status: string) => (dispatch: any) => {
 };
 
 export const changeSearchUser = (user: string) => (dispatch: any) => {
-  // return {
   dispatch({
     payload: {
       user
     },
     type: adminTypes.CHANGE_USER
   });
-
-  // }
 };
 
 export const changeSearchStatus = (status: string) => (dispatch: any) => {

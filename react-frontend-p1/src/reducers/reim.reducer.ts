@@ -1,5 +1,4 @@
 import { reimTypes } from "../actions/reims/reim.types";
-// import { User } from './../models/user';
 
 const initialState = {
   currentReim: {
@@ -16,7 +15,7 @@ const initialState = {
     receipts: [],
     status: "pending",
     timeSubmitted: 0,
-    username: "" // how do I make this the username of currentUser from the state?
+    username: ""
   }
 };
 

@@ -122,7 +122,6 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
               {" "}
               Add New Reimbursement to Submission
             </button>
-            {/* onClick get another row to appear... Also to add reim */}
           </div>
           <div className="col-4">
             <button
@@ -133,7 +132,6 @@ export class UserSubmitComponent extends React.Component<IProp, any> {
               Submit Reimbursement Request{" "}
             </button>
           </div>
-          {/* another button to show a table with newReims rendering in it?!? */}
         </div>
         <br />
         <form>

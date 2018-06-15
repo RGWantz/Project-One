@@ -12,10 +12,6 @@ export const submitReim = (wholeReim: any) => (dispatch: any) => {
     method: "POST"
   })
     .then(resp => {
-      console.log(resp.status);
-      // if (resp.status === 401 || resp.status === 403) {
-      //   return;
-      // }
       return resp.text();
     })
     .then(() => {
@@ -82,13 +78,13 @@ export const updateReim = (wholeReim: any) => (dispatch: any) => {
       console.log(err);
     });
 };
+
 export const addReim = (
   newReims: Reimbursement[],
   currentReim: Reimbursement
 ) => {
   return {
     payload: {
-      // newReims: newReims.push(currentReim),
       newReims: [...newReims, currentReim]
     },
     type: reimTypes.ADD_REIM

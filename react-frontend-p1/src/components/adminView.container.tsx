@@ -14,8 +14,6 @@ import {
   updateSubmitTime
 } from "../actions/reims/reim.actions";
 import { changeErr } from "../actions/users/user.actions";
-// import { findUser } from '../actions/users/user.actions';
-// possibly
 import { IState } from "../reducers";
 import { AdminViewComponent } from "./adminView.component";
 

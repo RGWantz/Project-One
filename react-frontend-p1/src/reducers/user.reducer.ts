@@ -1,6 +1,4 @@
-// import { combineReducers } from 'redux';
 import { userTypes } from "../actions/users/user.types";
-// import { User } from './../models/user';
 
 const initialState = {
   currentUser: {
@@ -67,14 +65,6 @@ export const userReducer = (state = initialState, action: any) => {
     case userTypes.ADD_USER:
       return {
         ...state
-        // currentUser: {
-        //   email: "",
-        //   firstName: "",
-        //   lastName: "",
-        //   password: "pass",
-        //   role: "employee",
-        //   username: ""
-        // }
       };
     case userTypes.UPDATE_USERINFO:
       return {
@@ -105,6 +95,5 @@ export const userReducer = (state = initialState, action: any) => {
         errMsg: "You are signed out of your Account"
       };
   }
-
   return state;
 };

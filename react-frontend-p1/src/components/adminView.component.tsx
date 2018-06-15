@@ -155,10 +155,6 @@ export class AdminViewComponent extends React.Component<IProp, any> {
 
           <br />
           <h3>Recently Submitted Reimbursements </h3>
-
-          {/* <button className="btn btn-secondary" type=""> Add New Reimbursement </button>  */}
-          {/* Another button would only be needed with the sort-by-timestamp functionality */}
-
           <table className="table">
             <thead>
               <tr>
@@ -184,7 +180,6 @@ export class AdminViewComponent extends React.Component<IProp, any> {
                       <th scope="col">Amount</th>
                       <th scope="col">Type</th>
                       <th scope="col">Description</th>
-                      {/* <th scope="col">Time</th> */}
                     </tr>
 
                     {reim.items.map((item: any) => (
@@ -202,7 +197,6 @@ export class AdminViewComponent extends React.Component<IProp, any> {
           </table>
           <br />
           <h4>Approve or Deny a Reimbursement Request</h4>
-
           <form onSubmit={this.updateReim}>
             <div className="row">
               <div className="col-3">

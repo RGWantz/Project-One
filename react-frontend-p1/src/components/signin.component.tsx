@@ -37,9 +37,6 @@ export class SigninComponent extends React.Component<IProp, any> {
       username: this.props.currentUser.username,
       password: tempPass
     };
-    // WORKING SIGNIN
-    // this.props
-    //   .findUser(credentials)
 
     new Promise((resolve, reject) => {
       this.props.findUser(credentials);
@@ -47,34 +44,14 @@ export class SigninComponent extends React.Component<IProp, any> {
     })
       .then(() => {
         setTimeout(() => {
-          console.log(this.props.errMsg);
           if (!this.props.errMsg) {
             this.props.history.push("/user");
           }
         }, 1500);
       })
-      .catch(err => console.log("error on server: ", err));
-
-    // new Promise((resolve, reject) => {
-    //   // It isn't waiting!
-    //   this.props
-    //     .findUser(this.props.currentUser.username)
-    //     .then(data => console.log("after promise"));
-    // }).then(() => {
-    //   if (this.props.currentUser.email) {
-    //     if (this.props.currentUser.password === tempPass) {
-    //       // this.props.history.push('/user'); // Why doesn't it recognize history?
-    //       console.log("ok");
-    //     } else {
-    //       this.changeErr("Password does not match. Please try again");
-    //       console.log(tempPass);
-    //     }
-    //   } else {
-    //     this.changeErr("This is not an existing Username");
-    //     console.log(tempPass);
-    //   }
-    //   console.log(this.props.currentUser);
-    // });
+      .catch(err => {
+        // console.log("error on server: ", err)
+      });
   };
 
   public componentDidMount() {
